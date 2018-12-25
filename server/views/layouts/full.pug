@@ -1,0 +1,82 @@
+include ../mixins/mixins
+
+include ../includes/variables/links
+
+block links
+
+block variables
+
+include ../includes/variables/variables
+
+-
+  var contacts = [
+    {
+      icon: 'skype',
+      text: 'andrey27x777@gmail.com',
+      link: socials.skype
+    },
+    {
+      icon: 'envelope',
+      text: 'andrey27x777@gmail.com',
+      link: 'mailto: andrey27x777@gmail.com'
+    },
+    {
+      icon: 'phone',
+      text: '...',
+      link: ''
+    },
+    {
+      icon: 'map_marker',
+      text: 'Одесса',
+      link: 'https://www.google.com.ua/maps/place/%D0%9E%D0%B4%D0%B5%D1%81%D1%81%D0%BA%D0%B8%D0%B9+%D0%B3%D0%BE%D1%81%D1%83%D0%B4%D0%B0%D1%80%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9+%D0%B0%D0%BA%D0%B0%D0%B4%D0%B5%D0%BC%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9+%D1%82%D0%B5%D0%B0%D1%82%D1%80+%D0%BE%D0%BF%D0%B5%D1%80%D1%8B+%D0%B8+%D0%B1%D0%B0%D0%BB%D0%B5%D1%82%D0%B0/@46.4854787,30.7402854,18z/data=!4m13!1m7!3m6!1s0x40c6318a0b864c43:0x129f8fe28cf2176c!2z0J7QtNC10YHRgdCwLCDQntC00LXRgdGB0LrQsNGPINC-0LHQu9Cw0YHRgtGMLCA2NTAwMA!3b1!8m2!3d46.482526!4d30.7233095!3m4!1s0x40c631985b45cb0b:0x6e315e968e5b2a42!8m2!3d46.4854787!4d30.7411794'
+    }
+  ]
+
+doctype html
+html
+
+  include ../includes/head
+
+  body
+
+    include ../includes/body/body_top
+
+    .main_wrap
+
+      // BEGIN HEADER
+
+      header#header.section.header.header-wide(class={'header-blog': page.name == 'blog'})
+
+        include ../includes/nav/nav
+
+        include ../includes/header_content
+
+        a.icon.icon-chevron_down.scroll_btn.scroll_btn-to_bottom(href="#footer")
+
+      // END HEADER
+
+      // BEGIN CONTENT
+
+      block content
+
+      // END CONTENT
+
+      // BEGIN FOOTER
+
+      footer(id="footer" class="footer" + (page.sections > 2 ? " footer-absolute" : "") + (page.name == "blog" ? " footer-bg" : ""))
+
+        if page.sections > 2
+          a.icon.icon-chevron_up.scroll_btn.scroll_btn-to_up(href="#header")
+
+        if page.content
+          include ../includes/footer/footer_top
+
+        include ../includes/footer/footer_bottom
+
+      // END FOOTER
+
+    - buffer = nav.header
+
+    include ../includes/nav/main_menu
+
+    include ../includes/body/body_bottom

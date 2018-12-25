@@ -1,0 +1,233 @@
+form {
+  width: 100%;
+}
+
+.form {
+  $block: &;
+
+  padding: 0;
+
+  &__group,
+  &__row {
+    @include padding("* 20px");
+  }
+
+  &__group {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__row {
+    $elem: &;
+
+    margin-bottom: 20px;
+
+    #{$block}__label {
+      float: left;
+      width: auto;
+    }
+
+    &-text_wrap,
+    &-textarea_wrap {
+      #{$block}__input {
+        @include padding("* 20px");
+        transition: border, background-color $trsTime;
+
+        &:focus {
+          @include border("1px 1px 1px 0 / solid / #{$blue}");
+        }
+
+        &-error {
+          @include border("1px / solid / #{$red}");
+        }
+      }
+    }
+
+    &-text_wrap {
+      @include oneLineBlock(45px);
+    }
+
+    &-icon_label_wrap {
+      #{$block} {
+        &__label {
+          width: 45px;
+          text-align: center;
+          color: #c4cbcd #f0efe9;
+
+          &:before {
+            font-size: 45px;
+            content: "";
+          }
+        }
+
+        &__input {
+          float: left;
+          width: auto;
+        }
+      }
+    }
+
+    &-textarea_wrap {
+      height: 140px;
+
+      #{$block}__input {
+        @include padding("10px *");
+      }
+    }
+
+    &-checkbox_wrap,
+    &-radio_wrap {
+      position: relative;
+      @include margin("* auto");
+      size: auto 20px;
+      font-size: 16px;
+
+      &:before {
+        float: left;
+        display: block;
+        size: 20px;
+        content: "";
+      }
+
+      #{$block} {
+        &__input {
+          display: none;
+        }
+
+        &__label {
+          cursor: pointer;
+        }
+
+        &__checked {
+          position: absolute;
+          opacity: 0;
+          transition: opacity 0.5s;
+        }
+
+        &__input:checked + #{$block}__checked {
+          opacity: 1;
+        }
+      }
+    }
+
+    &#{$elem}-checkbox_wrap {
+      display: table;
+      margin-bottom: 15px;
+      line-height: 18px;
+
+      &:before {
+        border-radius: 2px;
+        background: $darkBlue;
+      }
+
+      #{$block} {
+        &__label {
+          padding-top: 2px;
+          margin-left: 11px;
+        }
+
+        &__checked {
+          size: 20px;
+          font: 11px/20px FontAwesome;
+          text-align: center;
+          // color: $white;
+
+          &:before {
+            display: block;
+            content: "\f00c";
+          }
+        }
+      }
+    }
+
+    &-radio_wrap {
+      display: flex;
+      line-height: 20px;
+
+      &:before,
+      #{$block}__checked {
+        border-radius: 50%;
+      }
+
+      &:before {
+        background-color: $white;
+      }
+
+      #{$block} {
+        &__label {
+          margin-left: 9px;
+        }
+
+        &__checked {
+          @include position("absolute 6px * * 26px");
+          size: 8px;
+          background-color: $darkBlue;
+        }
+      }
+    }
+  }
+
+  &__label,
+  &__input {
+    display: block;
+    size: 100%;
+  }
+
+  &__legend,
+  &__label,
+  &__error {
+    font-size: 16px;
+  }
+
+  &__legend {
+    margin-bottom: 7px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  &__menu {
+    .menu__link {
+      font-size: 16px;
+      cursor: pointer;
+    }
+  }
+
+  &__popup {
+    color: $white $blue;
+
+    &-error_popup {
+      background-color: $red;
+    }
+  }
+
+  &__error_wrap {
+    $elem: &;
+
+    @include position("absolute * * * 50%");
+    display: none;
+    // top: 300px;
+    padding-top: 6px;
+    // transform: translateX(-50%);
+
+    &:before {
+      display: block;
+      @include margin("* auto");
+      @include border(
+        "0 9px 8px 9px / solid / transparent transparent #{$red}"
+      );
+      size: 0;
+      content: "";
+    }
+
+    &#{$elem}-active {
+      display: block;
+    }
+  }
+
+  &__error {
+    padding: 10px 20px 11px;
+    border-radius: 5px;
+    font-weight: 500;
+    color: $white $red;
+  }
+}

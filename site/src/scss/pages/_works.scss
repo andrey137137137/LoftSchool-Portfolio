@@ -1,0 +1,228 @@
+// SLIDER
+
+.slider {
+  background-color: #f2f0e8;
+
+  &__container {
+    position: relative;
+    // height: 569px;
+  }
+
+  &__item,
+  &__arrow {
+    background: center center no-repeat;
+  }
+
+  &__list,
+  &__nav {
+    width: 100%;
+  }
+
+  &__list {
+    position: relative;
+    height: 257px;
+    background-color: #e3e2de;
+  }
+
+  &__item {
+    @include position("absolute 0 * * 0");
+    z-index: 0;
+    display: none;
+    size: 100%;
+    font-size: 40px;
+    padding: 40px;
+    color: $white;
+    // background-size: cover;
+
+    &:nth-of-type(1) {
+      background-image: url("../userfiles/slide.png");
+    }
+
+    /* http://unrestrictedstock.com/wp-content/uploads/snowy-winter-vignette-bokeh-night-snow-falling-free-stock-photo.jpg */
+    &:nth-of-type(2) {
+      background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/snowy-winter-vignette-bokeh-night-snow-falling-free-stock-photo.jpg");
+    }
+
+    /* http://www.dawghousedesignstudio.com/wp-content/uploads/2010/01/25/free-stock-photos-1.jpg */
+    &:nth-of-type(3) {
+      background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/free-stock-photos-1.jpg");
+    }
+
+    /* http://www.stockfreeimages.com/static/homepage/waterfall-free-stock-photo-244915.jpg */
+    &:nth-of-type(4) {
+      background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/waterfall-free-stock-photo-244915.jpg");
+    }
+
+    &-active,
+    &-movable {
+      display: block;
+    }
+
+    &-active {
+      z-index: 1;
+    }
+
+    &-movable {
+      z-index: 2;
+    }
+  }
+
+  &__text_wrap {
+    @include padding("5px * 30px");
+    // height: 219px;
+  }
+
+  // &__title {
+  //   padding-top: 28px;
+  // }
+
+  &__desc {
+    @include padding("5px * 12px");
+    font-weight: 500;
+    color: #243994;
+  }
+
+  &__btn {
+    display: table;
+    // @include margin("12px auto *");
+    @include margin("* auto");
+    padding: 0 19px;
+    height: 40px;
+    line-height: 38px;
+
+    &_icon {
+      float: left;
+      size: auto 100%;
+      font-size: 22px/38px;
+    }
+
+    &_text {
+      float: right;
+      margin-left: 11px;
+    }
+  }
+
+  &__nav {
+    height: 93px;
+  }
+
+  &__arrow {
+    float: left;
+    size: 50% 100%;
+    font-size: 50px/85px;
+    text-decoration: none;
+
+    &:before {
+      display: block;
+      size: 100%;
+      color: $white rgba(#aaabb7, 0.7);
+      transition: background-color $trsTime;
+    }
+
+    &-prev {
+      background-image: url("../userfiles/prev.jpg");
+    }
+
+    &-next {
+      background-image: url("../userfiles/next.jpg");
+    }
+
+    &:hover:before,
+    &:focus:before {
+      background-color: rgba(#7e7f8a, 0.7);
+    }
+  }
+}
+
+// REVIEWS
+
+.reviews {
+  @include padding("8px * 32px");
+  // height: 614px;
+  color: $white;
+
+  &__title_wrap {
+    @include padding("21px * 3px");
+
+    .title_wrap__bg {
+      height: 90px;
+      transform: translate(-3px, 11px) rotate(26deg);
+    }
+
+    .title_wrap__title {
+      padding-top: 0;
+      line-height: 42px;
+    }
+  }
+
+  &__article {
+    position: relative;
+    @include padding("32px * *");
+  }
+
+  &__quote {
+    @include position("absolute 71px * * 0");
+    font-size: 83px;
+    color: rgba($white, 0.1);
+  }
+
+  &__img_wrap {
+    margin: 0 auto;
+    border-radius: 50%;
+    size: 51px;
+  }
+
+  &__text_wrap {
+    padding-top: 11px;
+    font-style: italic;
+  }
+
+  &__desc {
+    padding-bottom: 7px;
+    text-align: left;
+  }
+
+  &__author,
+  &__status {
+    display: block;
+    text-align: center;
+  }
+
+  &__author {
+    font-weight: bold;
+  }
+}
+
+// FEEDBACK FORM
+
+#{$titleClass}.feedback_form__title {
+  padding-bottom: 20px;
+
+  &:after {
+    border-bottom-color: $white;
+  }
+}
+
+.feedback_form {
+  // padding-top: 11px;
+  @include padding("11px * *");
+  width: 300px;
+  // height: 422px;
+  color: $white rgba(#dadbd6, 0.05);
+
+  &__row {
+    height: 40px;
+  }
+
+  &__text_input {
+    border-width: 0;
+    color: rgba($white, 0.5) rgba($white, 0.07);
+  }
+
+  &__menu {
+    .menu__link {
+      @include oneLineBlock(43px, 1px);
+      @include padding("* 36px * 37px");
+    }
+  }
+}

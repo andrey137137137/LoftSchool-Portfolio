@@ -1,0 +1,21 @@
+
+// preloader
+
+#preloader.preloader.preloader-active
+  .preloader__container
+    //- svg.preloader__circles
+    //-   use(xlink:href="../img/night.svg#preloader")
+    svg.preloader__circles
+      circle.preloader__center_circle
+      circle.preloader__satellite_circle
+    .preloader__counter
+
+// parallax
+
+ul#parallax(class="parallax" + (page.content ? ' parallax-scroll' : ''))
+  //- .parallax__container
+  - for (var i = 1; i <= 2; i++)
+    li.parallax__layer
+      img.parallax__img(src=`img/parallax/layer_${i}.png`)
+  //- parallax-item(v-for='i in 2' v-bind:index='i')
+  //- .parallax__content

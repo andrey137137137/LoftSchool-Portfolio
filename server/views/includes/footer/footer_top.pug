@@ -1,0 +1,16 @@
+
+- nav.into_header = false
+
+// footer_top
+
+ul.section.footer_top
+  li.container.footer_top__container
+
+    p.col.col-ds_float.col-ds_4.col-xds_4.section__desc.footer_top__col.footer_top__desc Этот сайт я делаю в рамках обучения в Школе онлайн образования LoftSchool.
+
+    include ../nav/nav
+
+    ul.col.col-tb_float.col-tb_6.col-ds_3.col-xds_4.footer_top__col.footer_top__contacts_list
+      each item in contacts
+        li.footer_top__contacts_item
+          a.footer_top__contacts_link(href=item.link target="_blank")= item.text

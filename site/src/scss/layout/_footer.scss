@@ -1,0 +1,128 @@
+.footer {
+  position: relative;
+  width: 100%;
+  color: $white;
+
+  &-absolute {
+    @include position("absolute * * 0 *");
+  }
+
+  &-bg {
+    background-color: $white;
+  }
+
+  &_top {
+    // height: 288px;
+    // background-color: rgba(#3d3f47, 0.85);
+    background-color: rgba(#1c1f29, 0.85);
+
+    &__container {
+      justify-content: space-between;
+    }
+
+    &__desc {
+      @include padding("13px *");
+      font-weight: 300;
+    }
+
+    &__nav {
+      &:before,
+      &:after {
+        display: block;
+        width: 100%;
+        content: "";
+      }
+
+      &:before {
+        border-top: 1px solid rgba($white, 0.2);
+        height: 13px;
+      }
+
+      &:after {
+        border-bottom: 1px solid rgba($white, 0.2);
+        height: 8px;
+      }
+    }
+
+    &__menu {
+      display: table;
+      @include margin("* auto");
+      font-weight: 500;
+
+      .menu__link {
+        @include padding("* 5px");
+        color: $white;
+
+        &:hover {
+          text-decoration: underline;
+          color: rgba($white, 0.5);
+        }
+      }
+    }
+
+    &__socials {
+      .socials__link {
+        @include oneLineBlock(45px);
+        font-size: 27px;
+        color: rgba($white, 0.5);
+
+        &:hover {
+          color: $white;
+        }
+      }
+    }
+
+    &__contacts {
+      &_list {
+        border-bottom-color: rgba($white, 0);
+        @include padding("14px * 12px");
+      }
+
+      &_link {
+        display: block;
+        font-weight: 300;
+        text-align: center;
+        text-decoration: none;
+        color: inherit;
+
+        &:hover {
+          text-decoration: underline;
+          color: $blue;
+        }
+      }
+    }
+  }
+
+  &_bottom {
+    @include padding("5px * 4px");
+    // height: 57px;
+    font-weight: 300;
+
+    &__container {
+      justify-content: center;
+      text-align: center;
+    }
+
+    &__col {
+      // float: left;
+      flex-grow: 0;
+      display: inline-block;
+      width: auto;
+    }
+
+    &__author {
+      width: 100%;
+    }
+
+    &__date {
+      &:before {
+        content: " | ";
+      }
+    }
+
+    &-bg {
+      // background-color: rgba(#2c58a3, 0.85);
+      background-color: rgba(#004cd1, 0.85);
+    }
+  }
+}

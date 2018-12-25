@@ -1,0 +1,160 @@
+.about,
+.skills {
+  // width: 50%;
+  width: 600px;
+  // height: 857px;
+}
+
+// ABOUT
+
+#{$titleClass}.about__title {
+  &:after {
+    height: 21px;
+  }
+}
+
+.about {
+  $block: &;
+
+  float: left;
+
+  &__container {
+    padding-bottom: 21px;
+
+    &.container-full_width .col#{$block}__col {
+      @include padding("* 0");
+      width: 443px;
+    }
+  }
+
+  &__title_wrap {
+    top: -15px;
+    @include padding("22px * 34px");
+
+    .title_wrap__title {
+      width: 100%;
+    }
+  }
+
+  &__img_wrap {
+    height: 391px;
+  }
+
+  &__text_wrap {
+    padding-top: 9px;
+  }
+
+  &__desc {
+    $elem: &;
+
+    &#{$elem}-first {
+      padding-top: 16px;
+    }
+  }
+}
+
+// SKILLS
+
+#{$titleClass}.skills__title {
+  padding-top: 9px;
+
+  &:after {
+    height: 23px;
+  }
+}
+
+.skills {
+  $block: &;
+
+  float: right;
+
+  &__container {
+    @include padding("0 * 61px 29px");
+
+    .col#{$block}__desc {
+      width: 100%;
+    }
+  }
+
+  &__desc {
+    padding-top: 17px;
+  }
+
+  &__counters {
+    $elem: &;
+
+    padding-top: 18px;
+
+    &#{$elem}-first {
+      padding-top: 49px;
+    }
+  }
+
+  &__counters_title {
+    @include padding("* 10px");
+    font-size: 28px/32px;
+    text-align: left;
+  }
+
+  &__list {
+    justify-content: flex-start;
+    @include margin("* -21px * -9px");
+  }
+
+  &__item_wrap {
+    @include padding("* 19px");
+  }
+}
+
+// CONTACTS
+
+#{$titleClass}.contacts__title {
+  font-size: 35px/41px;
+
+  &:after {
+    height: 22px;
+  }
+}
+
+.contacts {
+  top: 270px;
+  width: 580px;
+  // height: 293px;
+
+  &__container {
+    @include padding("8px 9px 33px");
+  }
+
+  &__list {
+    padding-top: 15px;
+  }
+
+  &__item {
+    @include padding("15px 10px");
+    width: 50%;
+
+    &:nth-child(odd) {
+      float: left;
+    }
+
+    &:nth-child(even) {
+      float: right;
+    }
+  }
+
+  &__icon,
+  &__link {
+    line-height: 45px;
+  }
+
+  &__icon {
+    size: 45px;
+    font-size: 28px;
+  }
+}
+
+// MAP
+
+.map {
+  height: 964px;
+}

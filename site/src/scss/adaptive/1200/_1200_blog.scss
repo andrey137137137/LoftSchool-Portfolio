@@ -1,0 +1,113 @@
+// TABS
+
+.tabs {
+  position: relative;
+  display: block;
+  @include widthToPercents(310, 1200);
+  // width: 310px;
+  height: auto;
+  line-height: 26px;
+  background-color: #f9f8f0;
+
+  &__container {
+    $elem: &;
+
+    padding-top: 110px;
+
+    &#{$elem}-fixed {
+      @include widthToPercents(310, 1200);
+      // width: 310px;
+    }
+  }
+
+  &__link {
+    $elem: &;
+
+    display: block;
+    border-right: 3px solid rgba($white, 0);
+    @include padding("8px *");
+    margin-bottom: 10px;
+    color: inherit;
+
+    &#{$elem}-active {
+      border-right-color: $darkBlue;
+      font-weight: bold;
+      color: $darkBlue;
+      transition: color $trsTime, border-right-color $trsTime;
+    }
+  }
+}
+
+// BLOG
+
+.code {
+  height: 128px;
+  // background-color: #e6e5e3;
+  // overflow: hidden;
+
+  // &__list {
+  //   counter-reset: item;
+  //   list-style: inside none;
+  //   margin-left: 38px;
+  //   @include padding("12px *");
+  //   width: 1200px;
+  //   font-size: 13px/16px;
+  //   color: $black #f4f2f0;
+  // }
+
+  // &__item {
+  //   margin-left: -38px;
+  //   // height: 21px;
+  //   font-weight: 700;
+
+  //   &:before {
+  //     float: left;
+  //     box-sizing: border-box;
+  //     @include padding("* 9px");
+  //     width: 38px;
+  //     font-family: monospace;
+  //     text-align: right;
+  //     background-color: #e6e5e3;
+  //     counter-increment: item;
+  //     content: counter(item);
+  //   }
+  // }
+
+  // &__text {
+  //   float: left;
+  //   @include padding("* 3px");
+  //   // height: 100%;
+  //   overflow: hidden;
+  // }
+}
+
+.blog {
+  @include widthToPercents(890, 1200);
+  // width: 890px;
+
+  &__container {
+    @include margin("* 0");
+    padding: 102px 110px 62px 100px;
+  }
+
+  &__post {
+    line-height: 26px;
+
+    p {
+      padding-top: 10px;
+    }
+
+    .code {
+      margin-top: 12px;
+    }
+  }
+
+  &__date {
+    @include padding("16px * 6px");
+  }
+
+  &__separator {
+    @include margin("70px * 62px");
+    border-top-width: 5px;
+  }
+}

@@ -1,0 +1,53 @@
+// BLOG
+
+.code {
+  &__list {
+    margin-left: 42px;
+    @include padding("14px *");
+    font-size: 15px/18px;
+  }
+
+  &__item {
+    margin-left: -42px;
+
+    &:before {
+      @include padding("* 10px");
+      width: 42px;
+    }
+  }
+
+  &__text {
+    @include padding("* 4px");
+  }
+}
+
+.blog {
+  &__container {
+    @include padding("48px 25px 41px");
+  }
+
+  &__post {
+    // height: 846px;
+    line-height: 21px;
+
+    p {
+      padding-top: 9px;
+    }
+
+    .code {
+      margin-top: 15px;
+      // background-color: $black;
+    }
+  }
+
+  &__date {
+    padding-top: 10px;
+  }
+
+  &__separator {
+    @include margin("50px * 42px");
+    border-top-width: 5px;
+    border-top-color: rgba(#393e42, 0.07);
+    // border-top-color: #393e42;
+  }
+}

@@ -1,0 +1,101 @@
+// ABOUT
+
+.about {
+  // height: 854px;
+
+  &__container {
+    padding-bottom: 42px;
+  }
+
+  &__title_wrap {
+    // @include padding("20px * 34px");
+    padding-bottom: 41px;
+  }
+
+  // &__img_wrap {
+  //   height: 416px;
+  // }
+
+  &__text_wrap {
+    padding-top: 19px;
+  }
+
+  &__desc {
+    $elem: &;
+
+    padding-top: 10px;
+
+    &#{$elem}-first {
+      padding-top: 3px;
+    }
+  }
+}
+
+// SKILLS
+
+.skills {
+  $circleLength: 283;
+  // height: 815px;
+
+  &__container {
+    @include padding("20px * 32px");
+  }
+
+  &__desc {
+    padding: 4px 0 0;
+  }
+
+  &__counters {
+    $elem: &;
+
+    @include padding("22px * 1px");
+
+    &#{$elem}-first {
+      padding-top: 39px;
+    }
+  }
+}
+
+// MAP
+
+.map {
+  // height: 906px;
+  height: 904px;
+}
+
+// CONTACTS
+
+#{$titleClass}.contacts__title {
+  // @include padding("23px * 8px");
+  font-size: 30px/36px;
+}
+
+.contacts {
+  $block: &;
+
+  top: 147px;
+  width: 348px;
+  // height: 374px;
+
+  &__container {
+    @include padding("11px 20px 20px");
+  }
+
+  &__list {
+    padding-top: 10px;
+  }
+
+  &__item {
+    @include padding("10px *");
+  }
+
+  &__icon,
+  &__link {
+    line-height: 45px;
+  }
+
+  &__icon {
+    size: 45px;
+    font-size: 29px;
+  }
+}

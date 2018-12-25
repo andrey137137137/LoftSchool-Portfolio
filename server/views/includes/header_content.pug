@@ -1,0 +1,17 @@
+
+- buffer = 'header__logo' + (page.name == 'blog' ? ' header__logo-for_blog' : '');
+
+article.header__article(class={"header__article-relative": page.content, "header__article-padding": !page.content})
+
+  if page.content
+    +svg({id: 'stars1', classes: buffer})
+
+  a.img_wrap.header__avatar(class={"header__avatar-relative": page.content} href="/")
+    img.img_wrap__img(src="userfiles/avatar.jpg" alt="Аватарка")
+
+  if page.name == 'blog'
+    h1.section__title.section__title-large.header__title.header__title-relative.header__title-large Блог
+    p.section__desc.header__desc.header__desc-relative.header__desc-after_large_title Статьи, которые я написал
+  else
+    h2.section__title.header__title(class={"header__title-relative": page.content, "header__title-medium": page.content}) Банников Андрей
+    p.section__desc.header__desc(class={"header__desc-relative": page.content, "header__desc-after_medium_title": page.content}) Личный сайт веб разработчика

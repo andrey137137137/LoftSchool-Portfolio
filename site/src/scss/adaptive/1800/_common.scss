@@ -1,0 +1,74 @@
+@media only screen and (min-width: 1800px) {
+  .top_wrap {
+    &__corner_border {
+      @include border("102px  50vw  0  50vw  / * / *");
+    }
+  }
+
+  // @include container(150, 1800, 10, "xds");
+
+  .footer {
+    &_top {
+      $block: &;
+
+      // height: 147px;
+
+      &__container {
+        max-width: 1800px;
+
+        .col#{$block}__col {
+          @include padding("13px * 14px");
+          @include widthToPercents(600, 1800);
+        }
+      }
+
+      &__desc {
+        @include padding("23px * 14px");
+
+        &:after {
+          border-bottom-color: rgba($white, 0);
+        }
+      }
+
+      &__nav {
+        padding-left: 0;
+      }
+
+      &__menu,
+      &__socials {
+        display: block;
+        @include margin("* 0 * -12px");
+      }
+
+      &__menu {
+        .menu__link {
+          @include padding("* 15px");
+        }
+      }
+
+      &__contacts {
+        &_list {
+          padding-bottom: 20px;
+        }
+        &_link {
+          text-align: left;
+        }
+      }
+    }
+
+    &_bottom {
+      height: 38px;
+      padding-bottom: 9px;
+
+      &__author {
+        width: auto;
+      }
+
+      &__desc {
+        &:before {
+          content: " | ";
+        }
+      }
+    }
+  }
+}

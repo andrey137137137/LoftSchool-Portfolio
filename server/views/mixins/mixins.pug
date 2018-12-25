@@ -1,0 +1,35 @@
+
+mixin svg(settings)
+
+  svg(class=settings.classes)
+    use(xlink:href="../svg/symbol/svg/sprite.symbol.svg#" + settings.id)
+
+
+mixin section(settings)
+
+  // Begin 
+    #{settings.class.toUpperCase()}
+
+  section(id=settings.class class="section " + settings.class)
+    div(class="container" + (settings.full_width ? " container-full_width" : "") + (settings.is_container_class ? " " + settings.class + "__container" : ""))
+
+      block
+
+  // End 
+    #{settings.class.toUpperCase()}
+
+
+mixin skills_section(settings)
+
+  section(class={"skills__counters": true, "skills__counters-first": settings.is_first})
+    h2.section__title.skills__counters_title= settings.title
+
+    ul.clearfix.skills__list
+      for item, index in settings.items
+        if item.value > 0
+          li(class={"skills__item_wrap": true, "skills__item_wrap-last": index == settings.items.length - 1})
+            div(class="skills__item skills__item-prs_" + item.value)
+              svg.skills__item_circle(width="110" height="110" viewBox="0 0 110 110")
+                circle.skills__item_base(r="45" cx="55" cy="55")
+                circle.skills__item_sector(r="45" cx="55" cy="55" transform="rotate(-90 55 55)")
+              span.skills__item_title= item.title

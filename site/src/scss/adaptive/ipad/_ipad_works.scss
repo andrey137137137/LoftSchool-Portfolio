@@ -1,0 +1,101 @@
+// SLIDER
+
+.slider {
+  background-color: #f2f0e8;
+
+  &__list {
+    height: 529px;
+  }
+
+  &__text_wrap {
+    @include padding("20px * 30px");
+    height: 270px;
+  }
+
+  &__desc {
+    @include padding("13px * 25px");
+  }
+
+  &__btn_icon {
+    line-height: 43px;
+  }
+
+  &__nav {
+    height: 215px;
+  }
+
+  &__arrow {
+    line-height: 199px;
+  }
+}
+
+// REVIEWS
+
+.reviews {
+  @include padding("16px * 43px");
+  // height: 455px;
+
+  &__title_wrap {
+    @include padding("22px * 42px");
+
+    .title_wrap__bg {
+      height: 105%;
+      transform: translate(0, -7px) rotate(26deg);
+    }
+
+    // .title_wrap__title {
+    //   padding-top: 0;
+    //   line-height: 42px;
+    // }
+  }
+
+  // &__title {
+  //   padding-bottom: 3px;
+  //   line-height: 42px;
+  // }
+
+  &__article {
+    // margin-top: -10px;
+    @include padding("0 * *");
+  }
+
+  &__quote {
+    // top: 71px;
+    left: 12px;
+  }
+
+  &__img_wrap {
+    size: 77px;
+  }
+
+  &__text_wrap {
+    padding-top: 15px;
+  }
+
+  &__desc {
+    padding-bottom: 8px;
+  }
+}
+
+// FEEDBACK FORM
+
+.feedback_form {
+  @include padding("18px * *");
+  width: 348px;
+  // height: 439px;
+
+  // &__title {
+  //   padding-bottom: 12px;
+  // }
+
+  // &__row {
+  //   height: 45px;
+  // }
+
+  &__menu {
+    .menu__link {
+      @include padding("* 36px * 37px");
+      @include oneLineBlock(45px, 1px);
+    }
+  }
+}

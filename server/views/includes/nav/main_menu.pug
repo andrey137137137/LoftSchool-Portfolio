@@ -1,0 +1,9 @@
+
+div(id=buffer.menu.id class="menu " + buffer.block + "__menu" + buffer.menu.modificators)
+  for item, index in main_menu
+    if index == main_menu.length - 1 && !page.content
+      
+    else
+      a(class="menu__link" + buffer.menu.link_modificators href=item.link)= item.title
+      //- li.menu__item
+      //-   a(class="menu__link" + buffer.menu.link_modificators href=item.link)= item.title

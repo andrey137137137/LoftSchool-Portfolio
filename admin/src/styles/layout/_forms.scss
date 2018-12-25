@@ -1,0 +1,217 @@
+form {
+  width: 100%;
+}
+
+.form {
+  $block: &;
+
+  &__row {
+    &-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      @include margin("10px * 30px");
+    }
+  }
+
+  &__col {
+    float: left;
+  }
+
+  &__wrap {
+    $elem: &;
+
+    // #{$block}__label {
+    //   width: auto;
+    // }
+
+    &-number,
+    &-text {
+      #{$block}__input {
+        @include oneLineBlock(45px, 1px);
+      }
+    }
+
+    &-numeric,
+    &-icon_label {
+      #{$block} {
+        &__label,
+        &__input {
+          float: left;
+        }
+      }
+    }
+
+    &-text,
+    &-number,
+    &-textarea {
+      width: 300px;
+    }
+
+    &-number {
+      #{$block} {
+        // &__label,
+        // &__measure {
+        //   line-height: 32px;
+        // }
+
+        &__input,
+        &__measure {
+          float: left;
+        }
+
+        &__label {
+          @include padding("* 20px");
+          width: 124px;
+        }
+
+        &__input {
+          // @include padding("* 0");
+          // width: 46px;
+          width: 276px;
+          // @include oneLineBlock(32px, 1px);
+          // text-align: center;
+        }
+
+        &__measure {
+          // @include padding("* 11px");
+          padding-left: 11px;
+          width: 24px;
+          @include oneLineBlock(45px);
+        }
+      }
+    }
+
+    &-textarea {
+      #{$block}__input {
+        @include padding("9px *");
+        height: 249px;
+        line-height: 24px;
+      }
+    }
+
+    &-icon_label {
+      #{$block} {
+        &__label {
+          width: 45px;
+          text-align: center;
+          color: #c4cbcd #f0efe9;
+
+          &:before {
+            font-size: 45px;
+            content: "";
+          }
+        }
+
+        &__input {
+          float: left;
+          width: auto;
+        }
+      }
+    }
+  }
+
+  &__label,
+  &__input {
+    display: block;
+    width: 100%;
+  }
+
+  &__input,
+  &__btn {
+    border-radius: 5px;
+    @include padding("* 17px");
+  }
+
+  &__legend {
+    font-size: 16px;
+  }
+
+  &__legend {
+    // margin-bottom: 7px;
+    font-weight: bold;
+    line-height: 34px;
+    // text-align: center;
+  }
+
+  &__label {
+    height: 100%;
+  }
+
+  &__input {
+    border: 1px solid $white;
+    transition: border, background-color $trsTime;
+
+    &:active,
+    &:focus {
+      border-color: $blue;
+      outline: 0;
+    }
+
+    &-required {
+      &,
+      &:active,
+      &:focus {
+        border-color: $orange;
+      }
+    }
+
+    &-error {
+      &,
+      &:active,
+      &:focus {
+        border-color: $red;
+      }
+    }
+
+    &-valid {
+      &,
+      &:active,
+      &:focus {
+        // border-color: forestgreen;
+        border-color: $blue;
+      }
+    }
+  }
+
+  &__menu {
+    .menu__link {
+      font-size: 16px;
+      cursor: pointer;
+    }
+  }
+
+  &__popup {
+    color: $white $blue;
+
+    &-error_popup {
+      background-color: $red;
+    }
+  }
+
+  &__error_wrap {
+    size: 100% 20px;
+  }
+
+  &__error {
+    @include padding("* 10px");
+    font-size: 14px/20px;
+    color: $red;
+
+    &-required {
+      color: $orange;
+    }
+  }
+
+  &__btn {
+    $elem: &;
+
+    @include oneLineBlock(40px, 1px);
+    cursor: pointer;
+
+    &#{$elem}-danger {
+      border-color: $red;
+      background-color: $red;
+    }
+  }
+}

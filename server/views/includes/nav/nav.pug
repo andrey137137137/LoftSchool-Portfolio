@@ -1,0 +1,28 @@
+
+- buffer = nav.into_header ? nav.header : nav.footer
+
+// Begin 
+  #{buffer.block} nav
+
+nav(class=buffer.container.classes + "nav " + buffer.block + "__nav" + buffer.container.modificators)
+
+  if nav.into_header
+
+    include socials
+
+    if page.content
+      a#menu_checker.header__menu_checker.header__menu_checker-open(href="#")
+        .header__menu_checker_line
+        .header__menu_checker_line
+        .header__menu_checker_line
+    else
+      include main_menu
+
+  else
+
+    include main_menu
+
+    include socials
+
+// End 
+  #{buffer.block} nav

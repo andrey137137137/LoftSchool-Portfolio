@@ -1,0 +1,63 @@
+
+-
+  var nav = {
+    into_header: true,
+    header: {
+      block: 'header',
+      container: {
+        classes: '',
+        modificators: page.content ? ' header__nav-fixed' : ''
+      },
+      menu: {
+        id: page.content ? 'main_menu' : '',
+        modificators: page.content ? ' header__menu-absolute' : ' header__menu-float',
+        link_modificators: page.content ? ' section__title section__title-large section__title-underlined' : ' btn'
+      },
+      socials: {
+        modificators: page.content ? ' header__socials-left' : '',
+        link_modificators: page.content ? '' : ''
+      }
+    },
+    footer: {
+      block: 'footer_top',
+      container: {
+        classes: 'col col-tb_float col-tb_6 col-ds_5 col-xds_4 footer_top__col ',
+        modificators: ''
+      },
+      menu: {
+        id: '',
+        modificators: '',
+        link_modificators: ''
+      },
+      socials: {
+        modificators: '',
+        link_modificators: ''
+      }
+    },
+  }
+-
+  var main_menu = [
+      {
+        title: 'Мои работы',
+        link: `${links.works}`
+      },
+      {
+        title: 'Обо мне',
+        link: `${links.about}`
+      },
+      {
+        title: 'Блог',
+        link: `${links.blog}`
+      },
+      {
+        title: 'Авторизация',
+        link: `${links.index}#login`
+      }
+    ]
+-
+  var socials = {
+    'vk': 'https://vk.com/id13384759',
+    'github_alt': 'https://github.com/andrey137137137',
+    'skype': 'skype:andrey27x777@gmail.com'
+  }
+- var buffer

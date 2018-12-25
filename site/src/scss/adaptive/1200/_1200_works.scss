@@ -1,0 +1,139 @@
+// SLIDER
+
+#{$titleClass}.slider__title {
+  &:after {
+    height: 22px;
+  }
+}
+
+.slider {
+  &__container {
+    display: block;
+  }
+
+  &__list,
+  &__text_wrap,
+  &__nav {
+    width: 50%;
+  }
+
+  &__list,
+  &__nav {
+    float: right;
+  }
+
+  &__list {
+    height: 525px;
+  }
+
+  &__text_wrap {
+    float: left;
+    @include padding("221px 100px 0");
+    size: 50% 100%;
+  }
+
+  &__desc {
+    @include padding("14px * 54px");
+  }
+
+  // &__btn {
+  //   padding: 0 19px;
+  //   height: 40px;
+  //   line-height: 38px;
+
+  //   &_icon {
+  //     font-size: 22px/38px;
+  //   }
+
+  //   &_text {
+  //     margin-left: 11px;
+  //   }
+  // }
+
+  &__nav {
+    margin-left: 50%;
+    height: 225px;
+  }
+
+  &__arrow {
+    line-height: 225px;
+  }
+}
+
+// REVIEWS
+
+.reviews {
+  justify-content: center;
+  @include padding("33px * 66px");
+  // height: 555px;
+
+  &__title_wrap {
+    @include padding("25px * 47px");
+
+    // .title_wrap__bg {
+    //   height: 105%;
+    //   transform: translate(0, -7px) rotate(26deg);
+    // }
+
+    // &__title {
+    //   padding-bottom: 3px;
+    //   line-height: 42px;
+    // }
+  }
+
+  &__article {
+    $elem: &;
+
+    @include padding("16px * *");
+
+    &#{$elem}-first {
+      margin-left: 200px;
+    }
+  }
+
+  &__quote {
+    top: 82px;
+  }
+
+  &__img_wrap {
+    size: 77px;
+  }
+
+  &__text_wrap {
+    padding-top: 17px;
+  }
+
+  &__desc {
+    padding-bottom: 16px;
+    line-height: 26px;
+  }
+}
+
+// FEEDBACK FORM
+
+#{$titleClass}.feedback_form__title {
+  padding-bottom: 30px;
+
+  &:after {
+    height: 22px;
+  }
+}
+
+.feedback_form {
+  // padding-top: 11px;
+  @include padding("14px * *");
+  width: 380px;
+  // height: 459px;
+
+  // &__title {
+  //   padding-bottom: 12px;
+
+  //   &:after {
+  //     border-bottom-color: $white;
+  //   }
+  // }
+
+  &__text_input {
+    border-width: 0;
+  }
+}
