@@ -1,5 +1,5 @@
 <template lang="pug">
-  FormWrapper(@submit.prevent="update")
+  FormWrapper(@submit.prevent="submit")
     FormField(
       v-model="title"
       :val="$v.title"
@@ -24,8 +24,8 @@
       ) Удалить
       ButtonElem(
         :wrapperClass="buttonWrapperClass"
-        :disabled="disabled"
       ) {{buttonValue}}
+        //- :disabled="disabled"
 </template>
 
 <script>
@@ -108,62 +108,29 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(["deletePost", "createPost"]),
+    ...mapMutations(["deletePost", "updatePost", "createPost"]),
     removePost(postId) {
       this.deletePost(postId);
     },
-    update(e) {
-      if (this.post.title && this.post.body) {
-        const newPost = {
+    submit(e) {
+      if (!this.$v.$invalid) {
+        const data = {
           // id: Math.round(Math.random() * 1000000),
-          title: this.post.title,
-          text: this.post.body,
-          date: Date.now
+          title: this.title,
+          text: this.text
         };
 
-        this.createPost(newPost);
+        console.log(data);
+
+        if (this.isNew) {
+          this.createPost(data);
+        } else {
+          data.date = this.date;
+          this.updatePost({ id: this.post._id, data });
+        }
 
         return true;
       }
-
-      this.errors = [];
-
-      if (!this.title) {
-        this.errors.push("Название не может быть пустым");
-      }
-
-      if (!this.text) {
-        this.errors.push("Текст не может быть пустым");
-      }
-
-      e.preventDefault();
-
-      // this.$validate().then(success => {
-      //   if (!success) return;
-      //   this.createPost(newPost);
-      //   this.title = "";
-      //   this.text = "";
-      //   this.validation.reset();
-      // });
-    },
-    create() {
-      this.$validator.validateAll().then(result => {
-        if (result) {
-          const newPost = {
-            // id: Math.round(Math.random() * 1000000),
-            title: this.title,
-            text: this.text
-            // date: new Date()
-          };
-
-          console.log(newPost);
-          // this.createPost(newPost);
-
-          return true;
-        }
-
-        alert("Correct all errors!");
-      });
     }
   }
 };

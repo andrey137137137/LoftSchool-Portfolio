@@ -17,6 +17,7 @@ module.exports.createArticle = function(req, res) {
   // создаем новую запись блога и передаем в нее поля из формы
   let item = new Model({
     title: req.body.title,
+    date: new Date(),
     body: req.body.text
   });
   // сохраняем запись в базе

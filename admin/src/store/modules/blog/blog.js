@@ -1,4 +1,5 @@
 import axios from "axios";
+import * as types from "../../common-mutation-types";
 
 const dbPage = "post";
 
@@ -12,23 +13,18 @@ const blog = {
     }
   },
   mutations: {
-    createPost({ state, actions }, postBody) {
-      axios.post(dbPage, postBody).then(response => {
-        console.log(response);
-        // state.data.push(post);
-        // actions.getPosts({ state });
-      });
+    [types.SET](state, data) {
+      state.data = data;
     },
-    deletePost({ state }, id) {
-      // state.data = state.data.filter(item => item._id !== id);
-      axios.delete(`${dbPage}/${id}`).then(response => {
-        console.log(response);
-        // actions.getPosts({ state });
-      });
+    [types.ADD](state, newItem) {
+      state.data.push(newItem);
+    },
+    [types.DELETE](state, id) {
+      state.data = state.data.filter(item => item.id !== skillId);
     }
   },
   actions: {
-    getPosts({ state }) {
+    getPosts({ commit }) {
       // fetch("src/store/modules/blog/data.json")
       //   .then(data => {
       //     return data.json();
@@ -38,7 +34,28 @@ const blog = {
       //     state.data = responce;
       //   });
       axios.get(dbPage).then(response => {
-        state.data = response.data.posts;
+        commit(types.SET, response.data.posts);
+      });
+    },
+    createPost({ dispatch }, data) {
+      axios.post(dbPage, data).then(response => {
+        console.log(response);
+        // state.data.push(post);
+        dispatch("getPosts");
+      });
+    },
+    updatePost({ dispatch }, post) {
+      axios.put(`${dbPage}/${post.id}`, post.data).then(response => {
+        console.log(response);
+        // state.data.push(post);
+        dispatch("getPosts");
+      });
+    },
+    deletePost({ dispatch }, id) {
+      // state.data = state.data.filter(item => item._id !== id);
+      axios.delete(`${dbPage}/${id}`).then(response => {
+        console.log(response);
+        dispatch("getPosts");
       });
     }
   }

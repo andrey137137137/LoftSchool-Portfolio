@@ -1,6 +1,6 @@
 <template lang="pug">
   .form
-    form(action="" method="post" :class="wrapperClass")
+    form(:class="wrapperClass")
       slot
 </template>
 

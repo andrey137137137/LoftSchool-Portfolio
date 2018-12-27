@@ -1,4 +1,5 @@
 import axios from "axios";
+import * as types from "../../common-mutation-types";
 
 const dbPage = "skill";
 
@@ -12,10 +13,13 @@ const about = {
     }
   },
   mutations: {
-    addSkill(state, skill) {
-      state.data.push(skill);
+    [types.SET](state, data) {
+      state.data = data;
     },
-    removeSkill(state, skillId) {
+    [types.ADD](state, newItem) {
+      state.data.push(newItem);
+    },
+    [types.DELETE](state, id) {
       state.data = state.data.filter(item => item.id !== skillId);
     }
   },
@@ -31,6 +35,12 @@ const about = {
       axios.get(dbPage).then(response => {
         state.data = response.data.skills;
       });
+    },
+    addSkill(state, skill) {
+      state.data.push(skill);
+    },
+    removeSkill(state, skillId) {
+      state.data = state.data.filter(item => item.id !== skillId);
     }
   }
 };
