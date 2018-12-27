@@ -213,5 +213,9 @@ form {
       border-color: $red;
       background-color: $red;
     }
+
+    &#{$elem}-disabled {
+      opacity: 0.5;
+    }
   }
 }

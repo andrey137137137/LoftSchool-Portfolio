@@ -25,36 +25,22 @@ const blog = {
   },
   actions: {
     getPosts({ commit }) {
-      // fetch("src/store/modules/blog/data.json")
-      //   .then(data => {
-      //     return data.json();
-      //   })
-      //   .then(responce => {
-      //     console.log(responce);
-      //     state.data = responce;
-      //   });
       axios.get(dbPage).then(response => {
         commit(types.SET, response.data.posts);
       });
     },
     createPost({ dispatch }, data) {
       axios.post(dbPage, data).then(response => {
-        console.log(response);
-        // state.data.push(post);
         dispatch("getPosts");
       });
     },
     updatePost({ dispatch }, post) {
       axios.put(`${dbPage}/${post.id}`, post.data).then(response => {
-        console.log(response);
-        // state.data.push(post);
         dispatch("getPosts");
       });
     },
     deletePost({ dispatch }, id) {
-      // state.data = state.data.filter(item => item._id !== id);
       axios.delete(`${dbPage}/${id}`).then(response => {
-        console.log(response);
         dispatch("getPosts");
       });
     }

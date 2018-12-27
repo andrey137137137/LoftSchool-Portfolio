@@ -5,7 +5,6 @@ import ErrorElem from "./ErrorElem";
 export default {
   render(h) {
     let elems = [];
-    let wrapperElem;
 
     if (this.label) {
       elems.push(this.labelElem(h));
@@ -20,14 +19,15 @@ export default {
     if (this.type === "number") {
       elems = [h("div", { class: "form__row" }, elems)];
     }
-    // else {
-    //   wrapperElem = elems;
-    // }
 
     return h(
       "div",
       {
-        class: ["form__wrap", `form__wrap-${this.type}`, ...this.wrapperClass]
+        class: {
+          form__wrap: true,
+          [`form__wrap-${this.type}`]: true,
+          ...this.wrapperClass
+        }
       },
       [...elems, this.errorElem(h)]
     );

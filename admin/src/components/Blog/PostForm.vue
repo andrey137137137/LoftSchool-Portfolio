@@ -1,5 +1,5 @@
 <template lang="pug">
-  FormWrapper(@submit.prevent="submit")
+  FormWrapper(@submit.prevent.native="submit")
     FormField(
       v-model="title"
       :val="$v.title"
@@ -20,12 +20,12 @@
         v-if="!isNew"
         :wrapperClass="buttonWrapperClass"
         :isDanger="true"
-        @click="removePost(post._id)"
+        @click.prevent.native="removePost(post._id)"
       ) Удалить
       ButtonElem(
+        :disabled="$v.$invalid"
         :wrapperClass="buttonWrapperClass"
       ) {{buttonValue}}
-        //- :disabled="disabled"
 </template>
 
 <script>
@@ -44,7 +44,7 @@ import InputElem from "../Form/InputElem";
 import TextareaElem from "../Form/TextareaElem";
 import ButtonElem from "../Form/ButtonElem";
 
-import { mapMutations } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "PostForm",
@@ -101,36 +101,40 @@ export default {
       return data;
     },
     buttonWrapperClass() {
-      return "form__col";
+      return { form__col: true, "form__btn-disabled": this.$v.$invalid };
     },
     buttonValue() {
       return this.isNew ? "Добавить" : "Обновить";
     }
   },
   methods: {
-    ...mapMutations(["deletePost", "updatePost", "createPost"]),
+    ...mapActions(["deletePost", "updatePost", "createPost"]),
     removePost(postId) {
-      this.deletePost(postId);
+      console.log(postId);
+
+      if (confirm(`Вы уверены, что хотите удалить пост ${postId}?`)) {
+        this.deletePost(postId);
+      }
     },
     submit(e) {
-      if (!this.$v.$invalid) {
-        const data = {
-          // id: Math.round(Math.random() * 1000000),
-          title: this.title,
-          text: this.text
-        };
-
-        console.log(data);
-
-        if (this.isNew) {
-          this.createPost(data);
-        } else {
-          data.date = this.date;
-          this.updatePost({ id: this.post._id, data });
-        }
-
-        return true;
+      if (this.$v.$invalid) {
+        return false;
       }
+
+      const data = {
+        // id: Math.round(Math.random() * 1000000),
+        title: this.title,
+        text: this.text
+      };
+
+      if (this.isNew) {
+        this.createPost(data);
+      } else {
+        data.date = this.date;
+        this.updatePost({ id: this.post._id, data });
+      }
+
+      return true;
     }
   }
 };

@@ -1,5 +1,5 @@
 <template lang="pug">
-  button.btn.form__btn(type="button" :class="extClass")
+  button.btn.form__btn(:type="type" :class="extClass")
     slot
 </template>
 
@@ -16,18 +16,14 @@ export default {
     }
   },
   computed: {
+    type() {
+      return this.isDanger ? "button" : "submit";
+    },
     extClass() {
-      const firstClass = this.isDanger ? "form__btn-danger" : "";
-
-      if (!this.wrapperClass) {
-        return firstClass;
-      }
-
-      if (Array.isArray(this.wrapperClass)) {
-        return [firstClass, ...this.wrapperClass];
-      }
-
-      return `${firstClass} ${this.wrapperClass}`;
+      return {
+        "form__btn-danger": this.isDanger,
+        ...this.wrapperClass
+      };
     }
   }
 };
