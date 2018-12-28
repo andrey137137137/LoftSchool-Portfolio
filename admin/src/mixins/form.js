@@ -1,11 +1,6 @@
 import types from "../constants/validation/types.js";
 
 export default {
-  computed: {
-    disabled() {
-      return this.$v.$pending || this.$v.$invalid;
-    }
-  },
   validations() {
     return this.fields;
   },

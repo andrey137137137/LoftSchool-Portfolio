@@ -1,5 +1,9 @@
 <template lang="pug">
-  FormWrapper(@submit.prevent.native="submit")
+  ItemForm(
+    :handleSubmit="submit"
+    :isNew="isNew"
+    :disabled="$v.$pending || $v.$invalid"
+  )
     FormField(
       v-model="title"
       :val="$v.title"
@@ -14,18 +18,6 @@
       v-model="text"
       :val="$v.text"
       placeholder="Содержание")
-
-    .form__row.form__row-buttons
-      ButtonElem(
-        v-if="!isNew"
-        :wrapperClass="buttonWrapperClass"
-        :isDanger="true"
-        @click.prevent.native="removePost(post._id)"
-      ) Удалить
-      ButtonElem(
-        :disabled="$v.$invalid"
-        :wrapperClass="buttonWrapperClass"
-      ) {{buttonValue}}
 </template>
 
 <script>
@@ -33,29 +25,20 @@ import {
   required,
   alphaNum,
   minLength,
-  maxLength,
-  sameAs
+  maxLength
 } from "vuelidate/lib/validators";
 
-import form from "../../mixins/form";
-import FormWrapper from "../Form/FormWrapper";
+import ItemForm from "../ItemForm";
 import FormField from "../Form/FormField";
-import InputElem from "../Form/InputElem";
-import TextareaElem from "../Form/TextareaElem";
-import ButtonElem from "../Form/ButtonElem";
 
 import { mapActions } from "vuex";
 
 export default {
   name: "PostForm",
   components: {
-    FormWrapper,
-    FormField,
-    InputElem,
-    TextareaElem,
-    ButtonElem
+    ItemForm,
+    FormField
   },
-  mixins: [form],
   props: {
     isNew: {
       type: Boolean,
@@ -63,7 +46,9 @@ export default {
     },
     post: {
       type: Object,
-      default: () => {}
+      default() {
+        return {};
+      }
     }
   },
   data() {
@@ -80,32 +65,24 @@ export default {
       text: this.post.body
     };
   },
-  computed: {
-    fields() {
-      const data = {
-        title: {
-          required
-        },
-        text: {
-          required,
-          minLength: minLength(71)
-        }
-      };
-
-      if (!this.isNew) {
-        data.date = {
-          required
-        };
+  validations() {
+    const data = {
+      title: {
+        required
+      },
+      text: {
+        required,
+        minLength: minLength(71)
       }
+    };
 
-      return data;
-    },
-    buttonWrapperClass() {
-      return { form__col: true, "form__btn-disabled": this.$v.$invalid };
-    },
-    buttonValue() {
-      return this.isNew ? "Добавить" : "Обновить";
+    if (!this.isNew) {
+      data.date = {
+        required
+      };
     }
+
+    return data;
   },
   methods: {
     ...mapActions(["deletePost", "updatePost", "createPost"]),
