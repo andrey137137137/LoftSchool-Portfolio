@@ -1,5 +1,5 @@
 <template lang="pug">
-  .form__wrap.form__wrap-textarea(:class="wrapperClass")
+  .form__wrap.form__wrap-textarea(:class="addClasses")
     label.form__label(v-if="label") {{label}}
     textarea.form__input(
       v-model="state"
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import wrapperClass from "../../mixins/wrapperClass";
+import addClasses from "../../mixins/addClasses";
 import formElem from "../../mixins/formElem";
 import ErrorElem from "./ErrorElem";
 
@@ -19,6 +19,6 @@ export default {
   components: {
     ErrorElem
   },
-  mixins: [wrapperClass, formElem]
+  mixins: [addClasses, formElem]
 };
 </script>

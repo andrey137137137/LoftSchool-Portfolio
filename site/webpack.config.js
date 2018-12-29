@@ -4,11 +4,11 @@ const path = require("path");
 
 module.exports = {
   entry: {
-    common: path.resolve(__dirname, "src/js/common.js")
-    // home: path.resolve(__dirname, "src/js/home.js"),
-    // works: path.resolve(__dirname, "src/js/works.js"),
-    // about: path.resolve(__dirname, "src/js/about.js"),
-    // blog: path.resolve(__dirname, "src/js/blog.js")
+    common: path.resolve(__dirname, "src/js/common.js"),
+    home: path.resolve(__dirname, "src/js/home.js"),
+    works: path.resolve(__dirname, "src/js/works.js"),
+    about: path.resolve(__dirname, "src/js/about.js"),
+    blog: path.resolve(__dirname, "src/js/blog.js")
   },
   output: {
     path: path.resolve(__dirname, "public/js"),

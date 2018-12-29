@@ -1,5 +1,5 @@
 <template lang="pug">
-  .clearfix.form__wrap.form__wrap-number(:class="wrapperClass")
+  .clearfix.form__wrap.form__wrap-number(:class="addClasses")
     .form__row
       label.form__label(v-if="label") {{label}}
       input.form__input(
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import wrapperClass from "../../mixins/wrapperClass";
+import addClasses from "../../mixins/addClasses";
 import formElem from "../../mixins/formElem";
 import ErrorElem from "./ErrorElem";
 
@@ -22,7 +22,7 @@ export default {
   components: {
     ErrorElem
   },
-  mixins: [wrapperClass, formElem],
+  mixins: [addClasses, formElem],
   props: {
     measure: {
       type: String,

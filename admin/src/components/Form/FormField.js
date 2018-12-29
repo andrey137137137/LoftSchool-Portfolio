@@ -1,5 +1,5 @@
 import types from "../../constants/validation/types";
-import wrapperClass from "../../mixins/wrapperClass";
+import addClasses from "../../mixins/addClasses";
 import ErrorElem from "./ErrorElem";
 
 export default {
@@ -26,13 +26,13 @@ export default {
         class: {
           form__wrap: true,
           [`form__wrap-${this.type}`]: true,
-          ...this.wrapperClass
+          ...this.addClasses
         }
       },
       [...elems, this.errorElem(h)]
     );
   },
-  mixins: [wrapperClass],
+  mixins: [addClasses],
   props: {
     val: {
       type: Object,

@@ -1,5 +1,5 @@
 <template lang="pug">
-  .form__wrap.form__wrap-text(:class="wrapperClass")
+  .form__wrap.form__wrap-text(:class="addClasses")
     label.form__label(v-if="label") {{label}}
     input.form__input(
       :type="getType"
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import wrapperClass from "../../mixins/wrapperClass";
+import addClasses from "../../mixins/addClasses";
 import formElem from "../../mixins/formElem";
 import ErrorElem from "./ErrorElem";
 
@@ -20,6 +20,6 @@ export default {
   components: {
     ErrorElem
   },
-  mixins: [wrapperClass, formElem]
+  mixins: [addClasses, formElem]
 };
 </script>

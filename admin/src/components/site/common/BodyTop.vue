@@ -1,14 +1,14 @@
 <template lang="pug">
-  .form
-    form(:class="addClasses")
-      slot
+  div
+    PreloaderCmp
+    ParallaxCmp(:addClasses="addClasses")
 </template>
 
 <script>
 import addClasses from "../../mixins/addClasses";
 
 export default {
-  name: "FormWrapper",
+  name: "BodyTop",
   mixins: [addClasses]
 };
 </script>

@@ -1,6 +1,6 @@
 export default {
   props: {
-    wrapperClass: {
+    addClasses: {
       type: Object,
       default() {
         return {};
