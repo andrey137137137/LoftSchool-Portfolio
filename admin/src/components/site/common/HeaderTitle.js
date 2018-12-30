@@ -1,5 +1,8 @@
 export default {
   name: "HeaderTitle",
+  render(h) {
+    return h("div", {}, [this.titleElem(h), this.descElem(h)]);
+  },
   props: {
     isRelative: {
       type: Boolean,
@@ -9,9 +12,6 @@ export default {
       type: Boolean,
       default: false
     }
-  },
-  render(h) {
-    return h("div", {}, [this.titleElem(h), this.descElem(h)]);
   },
   computed: {
     titleClass() {
