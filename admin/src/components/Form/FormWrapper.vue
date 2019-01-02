@@ -1,7 +1,6 @@
 <template lang="pug">
-  .form
-    form(:class="addClasses")
-      slot
+  form.form(:class="addClasses")
+    slot
 </template>
 
 <script>

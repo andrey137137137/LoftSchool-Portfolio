@@ -1,9 +1,9 @@
 <template lang="pug">
-  div.socials(:class="classes")
-    a.icon(
+  .socials(:class="containerClass")
+    a.icon.socials__link(
       v-for="link in links"
       :key="link.href"
-      :class="icon-" + link.icon + " socials__link"
+      :class="iconClass(link.icon)"
       target="_blank"
       :href="link.href"
       :title="link.name")
@@ -36,7 +36,7 @@ export default {
     id() {
       return this.inHeader && this.isContent ? "main_menu" : "";
     },
-    classes() {
+    containerClass() {
       if (this.inHeader) {
         return {
           header__socials: true,
@@ -47,6 +47,9 @@ export default {
       return {
         footer_top__socials: true
       };
+    },
+    iconClass: icon => {
+      return { [`icon-${icon}`]: true };
     }
   }
 };

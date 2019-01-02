@@ -7,11 +7,18 @@
           HeaderContent
           NavCmp
         LoginCmp(:addClasses="formClasses")
+    FooterWrapper(:isToUp="false")
 </template>
 
 <script>
 export default {
   name: "HomePage",
+  props: {
+    isBlog: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       formClasses: {
