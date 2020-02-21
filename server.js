@@ -7,6 +7,11 @@ const config = require("./server/config");
 require("./server/db/db");
 const mongoose = require("mongoose");
 
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
+
+const MongoStore = require("connect-mongo")(session);
+
 const app = express();
 const index = require("./server/routes/index");
 const indexDB = require("./server/db/routes/index");
@@ -37,6 +42,23 @@ app.set("view engine", "pug");
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(cookieParser());
+
+app.use(
+  session({
+    secret: "kjfnksbfksdbkfej",
+    key: "testing_key",
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection
+    })
+  })
+);
+
+app.use((req, res, next) => {
+  req.session.visitNumber = req.session.visitNumber + 1 || 1;
+  res.send("Visits: " + req.session.visitNumber);
+});
 
 app.use("/db", indexDB);
 app.use("/", index);
