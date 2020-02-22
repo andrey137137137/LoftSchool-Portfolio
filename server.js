@@ -57,7 +57,8 @@ app.use(
 
 app.use((req, res, next) => {
   req.session.visitNumber = req.session.visitNumber + 1 || 1;
-  res.send("Visits: " + req.session.visitNumber);
+  // res.send("Visits: " + req.session.visitNumber);
+  next();
 });
 
 app.use("/db", indexDB);

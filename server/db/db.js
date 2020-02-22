@@ -5,9 +5,7 @@ mongoose.Promise = global.Promise;
 
 mongoose
   .connect(
-    `mongodb://${config.db.user}:${config.db.password}@${config.db.host}:${
-      config.db.port
-    }/${config.db.name}`
+    `mongodb://${config.db.user}:${config.db.password}@${config.db.host}:${config.db.port}/${config.db.name}`
   )
   .catch(e => {
     console.error(e);
@@ -16,9 +14,7 @@ mongoose
 
 mongoose.connection.on("connected", function() {
   console.log(
-    `Mongoose default connection open mongodb://${config.db.host}:${
-      config.db.port
-    }/${config.db.name}`
+    `Mongoose default connection open mongodb://${config.db.host}:${config.db.port}/${config.db.name}`
   );
 });
 
@@ -45,3 +41,4 @@ process.on("SIGINT", function() {
 require("./models/post");
 require("./models/skill");
 require("./models/avatar");
+require("./models/user");

@@ -1,4 +1,6 @@
 const express = require("express");
+const mongoose = require("mongoose");
+const User = mongoose.model("user");
 const router = express.Router();
 
 const ctrlHome = require("../controllers/home");
@@ -21,6 +23,33 @@ router.get("/blog", ctrlBlog.index);
 // router.post("/blog", ctrlBlog.insertPost);
 // router.put("/blog/:id", ctrlBlog.updatePost);
 // router.delete("/blog/:id", ctrlBlog.deletePost);
+
+router.post("/login", (req, res, next) => {
+  const { username, password } = req.body;
+
+  async.waterfall(
+    [
+      callback => {
+        User.findOne({ username }, callback);
+      },
+      (user, callback) => {
+        if (!user || !user.validatePassword) {
+          return res.status(400).send("Имя пользователя или пароль неверны");
+        }
+
+        callback(null, user);
+      }
+    ],
+    err => {
+      if (err) {
+        next(err);
+      }
+
+      req.session.user = user._id;
+      res.redirect("/");
+    }
+  );
+});
 
 router.get("/admin", ctrlAdmin.admin);
 
