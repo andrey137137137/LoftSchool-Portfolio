@@ -7,8 +7,7 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "start": "gulp",
-    "server": "nodemon server.js",
+    "start": "gulp js",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "gulp build && cross-env NODE_ENV=production webpack --progress --hide-modules"
   },

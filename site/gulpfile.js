@@ -248,4 +248,5 @@ gulp.task(
   )
 );
 
+gulp.task("js", gulp.series(clean, svg, js));
 gulp.task("prod", gulp.series(clean, svg, gulp.parallel(css, js)));
