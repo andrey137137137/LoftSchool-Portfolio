@@ -15,6 +15,9 @@
 //   preloader().init();
 //   parallax().init();
 // });
+
+const regeneratorRuntime = require("regenerator-runtime");
+
 console.log("Vue script included");
 
 var form = new Vue({

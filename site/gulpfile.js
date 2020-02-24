@@ -242,11 +242,10 @@ gulp.task(
     clean,
     svg,
     gulp.parallel(html, css, js),
-    // gulp.parallel(svg, css, js)
-    // gulp.parallel(watch, browser_sync),
     gulp.parallel(watch, browser_sync)
   )
 );
 
-gulp.task("js", gulp.series(clean, svg, js));
+gulp.task("scripts", gulp.series(clean, js, watch));
+
 gulp.task("prod", gulp.series(clean, svg, gulp.parallel(css, js)));

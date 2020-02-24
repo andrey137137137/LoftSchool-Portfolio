@@ -7,7 +7,7 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "start": "gulp js",
+    "start": "gulp scripts",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "gulp build && cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
@@ -16,6 +16,7 @@
     "jquery": "^3.3.1",
     "normalize.css": "^8.0.0",
     "picturefill": "^3.0.2",
+    "regenerator-runtime": "^0.13.3",
     "respond.js": "^1.4.2"
   },
   "devDependencies": {
