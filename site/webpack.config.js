@@ -1,10 +1,10 @@
 const path = require("path");
-// const webpack = require("webpack");
-// const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 
 module.exports = {
   entry: {
     common: path.resolve(__dirname, "src/js/common.js"),
+    rest: path.resolve(__dirname, "src/js/rest.js"),
     home: path.resolve(__dirname, "src/js/home.js"),
     works: path.resolve(__dirname, "src/js/works.js"),
     about: path.resolve(__dirname, "src/js/about.js"),
@@ -15,11 +15,11 @@ module.exports = {
     publicPath: "/public/",
     filename: "[name].bundle.js"
   },
-  //   plugins: [
-  //     new UglifyJSPlugin({
-  //       sourceMap: true
-  //     })
-  //   ],
+  plugins: [
+    new UglifyJSPlugin({
+      sourceMap: true
+    })
+  ],
   module: {
     rules: [
       {

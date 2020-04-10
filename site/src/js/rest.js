@@ -1,12 +1,7 @@
-"use strict";
-
-// const $ = require("jquery"),
-//   myVars = require("./common");
-
-module.exports = myVars;
+const $ = require("jquery");
+const { modules } = require("./pathes");
 
 $(document).ready(function() {
-  const menuChecker = require(`${myVars.pathes.modules}/menu-checker`),;
-
+  const menuChecker = require(`${modules}/menu-checker`);
   menuChecker().init();
 });

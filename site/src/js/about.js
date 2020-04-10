@@ -1,8 +1,4 @@
-// "use strict";
+// const $ = require("jquery");
+// const { modules } = require("./pathes");
 
-// const $ = require("jquery"),
-//   myVars = require("./common");
-
-// $(document).ready(function() {
-
-// });
+// $(document).ready(function() {});

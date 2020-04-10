@@ -1,8 +1,13 @@
 
-// pixel_perfect
+//- // pixel_perfect
 
-#pixel_perfect
+//- #pixel_perfect
 
 // scripts
 
 script(src="js/common.bundle.js")
+
+if page.name != 'home'
+  script(src="js/rest.bundle.js")
+
+script(src=`js/${page.name}.bundle.js`)

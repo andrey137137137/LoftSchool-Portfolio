@@ -240,12 +240,10 @@ gulp.task(
   "default",
   gulp.series(
     clean,
-    svg,
-    gulp.parallel(html, css, js),
+    gulp.parallel(html, svg, css, js),
     gulp.parallel(watch, browser_sync)
   )
 );
 
 gulp.task("scripts", gulp.series(clean, js, watch));
-
-gulp.task("prod", gulp.series(clean, svg, gulp.parallel(css, js)));
+gulp.task("prod", gulp.series(clean, gulp.parallel(svg, css, js)));

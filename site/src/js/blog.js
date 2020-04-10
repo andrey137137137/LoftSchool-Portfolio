@@ -1,10 +1,7 @@
-"use strict";
-
-// const $ = require("jquery"),
-//   myVars = require("./common");
+const $ = require("jquery");
+const { modules } = require("./pathes");
 
 $(document).ready(function() {
-  const scrollMenu = require(`${myVars.pathes.modules}/scroll-menu`);
-
+  const scrollMenu = require(`${modules}/scroll-menu`);
   scrollMenu().init();
 });

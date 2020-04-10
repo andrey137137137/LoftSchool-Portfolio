@@ -33,20 +33,18 @@ html
           include ../includes/nav/nav
 
         #form
-          form.header__flip_wrap.header__flip_wrap-back.form.login_form#login_form(action="" @submit.prevent="handle")
-
-            p {{username}}
+          form.header__flip_wrap.header__flip_wrap-back.form.login_form#login_form(action="")
 
             .login_form__top_wrap
               h2.section__title.section__title-uppercase.login_form__title= title
 
               .form__row.form__row-text_wrap.form__row-icon_label_wrap.login_form__row
                 label.form__label.form__label-icon
-                input(type="text" v-model="username").form__input.login_form__text_input
+                input(type="text").form__input.login_form__text_input
 
               .form__row.form__row-text_wrap.form__row-icon_label_wrap.login_form__row
                 label.form__label.form__label-icon
-                input(type="password" v-model="password").form__input.login_form__text_input
+                input(type="password").form__input.login_form__text_input
 
               .form__row.form__row-checkbox_wrap.login_form__checkbox_wrap
                 input.form__input(id="login_form__checkbox" type="checkbox", name="login_form__checkbox")

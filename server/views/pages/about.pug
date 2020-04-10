@@ -42,44 +42,44 @@ block content
         | Вам полезен
       p.col.col-center.col-tb_8.section__desc.skills__desc Больше всего меня привлекет Frontend разработка, но я также знаком и могу решать не сложные задачи на Backend. Но давайте по порядку.
 
-      each skillCat in skills
-        section(class={"skills__counters": true, "skills__counters-first": settings.is_first})
-          h2.section__title.skills__counters_title= skillCat.category
+      //- each skillCat in skills
+      //-   section(class={"skills__counters": true, "skills__counters-first": settings.is_first})
+      //-     h2.section__title.skills__counters_title= skillCat.category
 
-          ul.clearfix.skills__list
-            for skill, index in skillCat.skills
-              if skill.percents > 0
-                li(class={"skills__item_wrap": true, "skills__item_wrap-last": index == skillCat.skills.length - 1})
-                  div(class="skills__item skills__item-prs_" + skill.percents)
-                    svg.skills__item_circle(width="110" height="110" viewBox="0 0 110 110")
-                      circle.skills__item_base(r="45" cx="55" cy="55")
-                      circle.skills__item_sector(r="45" cx="55" cy="55" transform="rotate(-90 55 55)")
-                    span.skills__item_title= skill.title
+      //-     ul.clearfix.skills__list
+      //-       for skill, index in skillCat.skills
+      //-         if skill.percents > 0
+      //-           li(class={"skills__item_wrap": true, "skills__item_wrap-last": index == skillCat.skills.length - 1})
+      //-             div(class="skills__item skills__item-prs_" + skill.percents)
+      //-               svg.skills__item_circle(width="110" height="110" viewBox="0 0 110 110")
+      //-                 circle.skills__item_base(r="45" cx="55" cy="55")
+      //-                 circle.skills__item_sector(r="45" cx="55" cy="55" transform="rotate(-90 55 55)")
+      //-               span.skills__item_title= skill.title
 
-      //- -
-      //-   var frontend_skills = [
-      //-     {title: 'HTML5', value: 70},
-      //-     {title: 'CSS3', value: 70},
-      //-     {title: 'JavaScript & jQuery', value: 40}
-      //-   ]
-      //- +skills_section({title: 'Frontend', items: frontend_skills, is_first: true})
+      -
+        var frontend_skills = [
+          {title: 'HTML5', value: 70},
+          {title: 'CSS3', value: 70},
+          {title: 'JavaScript & jQuery', value: 40}
+        ]
+      +skills_section({title: 'Frontend', items: frontend_skills, is_first: true})
 
-      //- -
-      //-   var backend_skills = [
-      //-     {title: 'PHP', value: 75},
-      //-     {title: 'mySQL', value: 40},
-      //-     {title: 'Node.js & npm', value: 10},
-      //-     {title: 'Mongo.db', value: 10}
-      //-   ]
-      //- +skills_section({title: 'Backend', items: backend_skills})
+      -
+        var backend_skills = [
+          {title: 'PHP', value: 75},
+          {title: 'mySQL', value: 40},
+          {title: 'Node.js & npm', value: 10},
+          {title: 'Mongo.db', value: 10}
+        ]
+      +skills_section({title: 'Backend', items: backend_skills})
 
-      //- -
-      //-   var workflow_skills = [
-      //-     {title: 'Git', value: 23},
-      //-     {title: 'Gulp', value: 40},
-      //-     {title: 'Bower', value: 20}
-      //-   ]
-      //- +skills_section({title: 'Workflow', items: workflow_skills})
+      -
+        var workflow_skills = [
+          {title: 'Git', value: 23},
+          {title: 'Gulp', value: 40},
+          {title: 'Bower', value: 20}
+        ]
+      +skills_section({title: 'Workflow', items: workflow_skills})
 
   //- bottom_wrap
 
