@@ -1,0 +1,103 @@
+extends layouts/full
+block variables
+
+  -
+    var page = {
+      name: 'works',
+      title: 'Мои работы',
+      content: true,
+      sections: 3
+    }
+
+block content
+
+  //- slider
+
+  section.section.top_wrap
+    .top_wrap__corner_border.top_wrap__corner_border-half_opacity
+    .title_wrap.top_wrap__title_wrap
+      +svg({id: 'stars2', classes: 'title_wrap__bg'})
+      h1.section__title.section__title-large.title_wrap__title Мои работы
+
+  +section({class: 'slider', is_container_class: true, full_width: true, title: 'Мои работы', h1: true, large_title: true})
+
+    ul.slider__list
+      li.slider__item.slider__item-active
+      li.slider__item
+      li.slider__item
+      li.slider__item
+    
+    article.slider__text_wrap
+      h2.section__title.section__title-uppercase.section__title-underlined.slider__title Сайт школы онлайн Образования
+      p.section__desc.slider__desc HTML , CSS, JAVASCRIPT
+      a.clearfix.btn.slider__btn(href="")
+        span.icon.icon-link.slider__btn_icon
+        span.slider__btn_text Посмотреть сайт
+
+    .clearfix.slider__nav
+      a.icon.icon-chevron_down.slider__arrow.slider__arrow-prev(href="")
+      a.icon.icon-chevron_up.slider__arrow.slider__arrow-next(href="")
+
+  //- bottom_wrap
+
+  .section.bottom_wrap.bottom_wrap-bg
+
+    //- reviews
+
+    section#reviews.section.container.reviews
+
+      .title_wrap.reviews__title_wrap
+        +svg({id: 'stars3', classes: 'title_wrap__bg'})
+        h2.section__title.section__title-large.title_wrap__title.reviews__title Что обо мне говорят
+
+      -
+        var reviews = [
+          {
+            description: 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!',
+            author: 'Ковальчук Дмитрий',
+            status: 'основатель Loftschool'
+          },
+          {
+            description: 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах!',
+            author: 'Сабанцев Владимир',
+            status: 'преподаватель'
+          }
+        ]
+
+      each review, index in reviews
+        article.col.col-float.col-tb_6.col-ds_4.reviews__article(class={"reviews__article-first": !index})
+          .icon.icon-quote.reviews__quote
+          picture.img_wrap.reviews__img_wrap
+            source.img_wrap__img(srcset="userfiles/reviews/m/" + (index + 1) + ".jpg" media="(min-width: 768px)")
+            img.img_wrap__img(srcset="userfiles/reviews/s/" + (index + 1) + ".jpg" alt=review.author)
+          .reviews__text_wrap
+            p.section__desc.reviews__desc= review.description
+            span.reviews__author= review.author
+            span.reviews__status
+              | &#8212;
+              | #{review.status}
+
+    //- feedback_form
+
+    section#feedback.section.container.container-full_width.form.feedback_form
+
+      form(action="")
+
+        h2.section__title.section__title-uppercase.section__title-underlined.feedback_form__title Связаться со мной
+
+        .form__row.form__row-text_wrap.feedback_form__row
+          input.form__input.feedback_form__text_input(type="text" name="name")
+
+        .form__row.form__row-text_wrap.feedback_form__row
+          input.form__input.feedback_form__text_input(type="email" name="email")
+
+        .form__row.form__row-textarea_wrap
+          textarea.form__input.feedback_form__text_input(name="message")
+
+        .menu.form__menu.feedback_form__menu
+          input.menu__link.btn(type="submit", value="Отправить")
+          input.menu__link.btn.btn-full_opacity(type="reset" value="Очистить")
+          //- li.menu__item
+          //-   input.menu__link.btn(type="submit", value="Отправить")
+          //- li.menu__item
+          //-   input.menu__link.btn.btn-full_opacity(type="reset" value="Очистить")

@@ -1,0 +1,103 @@
+extends layouts/full
+block variables
+
+  -
+    var page = {
+      name: 'about',
+      title: 'Обо мне',
+      content: true,
+      sections: 4
+    }
+
+block content
+
+  //- top_wrap
+
+  .section.top_wrap
+    .top_wrap__corner_border.top_wrap__corner_border-two_colors
+
+    //- about
+
+    +section({class: 'about', full_width: true, is_container_class: true})
+
+      .title_wrap.about__title_wrap
+        +svg({id: 'stars2', classes: 'title_wrap__bg title_wrap__bg-contrast'})
+        h1.section__title.section__title-large.title_wrap__title Обо мне
+
+      .col.col-center.col-tb_8.about__col.img_wrap.about__img_wrap
+        img.img_wrap__img(src="userfiles/about.jpg" alt="")
+
+      article.col.col-center.col-tb_8.about__col.about__text_wrap
+        h2.section__title.section__title-uppercase.section__title-underlined.about__title Кто я
+        p.section__desc.about__desc.about__desc-first Я веб разработчик из Одессы. Мне 31 год. Я учусь разработке современных сайтов и приложений. Мне нравится решать сложные задачи.
+        p.section__desc.about__desc Этот сайт я делаю в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё становится красиво!
+
+    //- skills
+
+    +section({class: 'skills', is_container_class: true})
+
+      h2.section__title.section__title-uppercase.section__title-underlined.skills__title
+        | Чем я могу быть
+        br
+        | Вам полезен
+      p.col.col-center.col-tb_8.section__desc.skills__desc Больше всего меня привлекет Frontend разработка, но я также знаком и могу решать не сложные задачи на Backend. Но давайте по порядку.
+
+      //- each skillCat in skills
+      //-   section(class={"skills__counters": true, "skills__counters-first": settings.is_first})
+      //-     h2.section__title.skills__counters_title= skillCat.category
+
+      //-     ul.clearfix.skills__list
+      //-       for skill, index in skillCat.skills
+      //-         if skill.percents > 0
+      //-           li(class={"skills__item_wrap": true, "skills__item_wrap-last": index == skillCat.skills.length - 1})
+      //-             div(class="skills__item skills__item-prs_" + skill.percents)
+      //-               svg.skills__item_circle(width="110" height="110" viewBox="0 0 110 110")
+      //-                 circle.skills__item_base(r="45" cx="55" cy="55")
+      //-                 circle.skills__item_sector(r="45" cx="55" cy="55" transform="rotate(-90 55 55)")
+      //-               span.skills__item_title= skill.title
+
+      -
+        var frontend_skills = [
+          {title: 'HTML5', value: 70},
+          {title: 'CSS3', value: 70},
+          {title: 'JavaScript & jQuery', value: 40}
+        ]
+      +skills_section({title: 'Frontend', items: frontend_skills, is_first: true})
+
+      -
+        var backend_skills = [
+          {title: 'PHP', value: 75},
+          {title: 'mySQL', value: 40},
+          {title: 'Node.js & npm', value: 10},
+          {title: 'Mongo.db', value: 10}
+        ]
+      +skills_section({title: 'Backend', items: backend_skills})
+
+      -
+        var workflow_skills = [
+          {title: 'Git', value: 23},
+          {title: 'Gulp', value: 40},
+          {title: 'Bower', value: 20}
+        ]
+      +skills_section({title: 'Workflow', items: workflow_skills})
+
+  //- bottom_wrap
+
+  .section.bottom_wrap.bottom_wrap-map_wrap
+
+    //- map
+
+    iframe.section.map(src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1373.5715527640798!2d30.7402854!3d46.4854787!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40c631985b45cb0b%3A0x6e315e968e5b2a42!2z0J7QtNC10YHRgdC60LjQuSDQs9C-0YHRg9C00LDRgNGB0YLQstC10L3QvdGL0Lkg0LDQutCw0LTQtdC80LjRh9C10YHQutC40Lkg0YLQtdCw0YLRgCDQvtC_0LXRgNGLINC4INCx0LDQu9C10YLQsA!5e0!3m2!1sru!2sua!4v1522350054754" frameborder="0" style="border:0" allowfullscreen)
+
+    //- contacts
+
+    +section({class: 'contacts', is_container_class: true})
+
+      h2.section__title.section__title-uppercase.section__title-underlined.contacts__title Контакты
+
+      ul.clearfix.contacts__list
+        each item in contacts
+          li.clearfix.contacts__item
+            i(class="icon icon-" + item.icon + " contacts__icon")
+            span(class="contacts__item_title")= item.icon
+            a.contacts__link(href=item.link target="_blank")= item.text
