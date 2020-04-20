@@ -11,13 +11,9 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "gulp build && cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
-  "_moduleAliases": {
-    "@modules": "src/js/modules"
-  },
   "dependencies": {
     "html5shiv": "^3.7.3",
     "jquery": "^3.3.1",
-    "module-alias": "^2.2.2",
     "normalize.css": "^8.0.0",
     "picturefill": "^3.0.2",
     "regenerator-runtime": "^0.13.3",
@@ -66,9 +62,10 @@
     "postcss-short-text": "^1.1.0",
     "precss": "^3.1.2",
     "sp-load": "^1.1.0",
-    "webpack": "^3.11.0",
-    "webpack-cli": "^2.0.14",
-    "webpack-dev-server": "^3.1.1"
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.0.0",
+    "webpack-cli": "^2.1.5",
+    "webpack-dev-server": "^3.10.3"
   },
   "repository": {
     "type": "git",
