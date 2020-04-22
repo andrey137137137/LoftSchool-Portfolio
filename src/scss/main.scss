@@ -1,10 +1,5 @@
 // BLOCK__ELEMENT-MODIFICATOR
 
-// @mixin import($folder)
-// {
-//   @import "#{$folder}/import";
-// }
-
 @import "variables/variables";
 @import "mixins/mixins";
 
@@ -15,7 +10,7 @@
 // PAGES
 @import "pages/import";
 
-// @import "adaptive/import";
+@import "adaptive/import";
 
 // @include pixelPerfect(ipad, welcome, -195px);
 // @include pixelPerfect(ipad, login, -194px);
