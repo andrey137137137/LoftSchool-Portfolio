@@ -1,14 +1,10 @@
-const // general
-  gulp = require("gulp"),
-  // плагины галпа, объявлять не нужно, используем как $gp.имяПлагина (без приставки gulp-)
+const gulp = require("gulp"),
   $gp = require("gulp-load-plugins")(),
-  $ = $gp.jquery,
   del = require("del"),
   cssnext = require("postcss-cssnext"),
   short = require("postcss-short"),
   shortText = require("postcss-short-text"),
   shortBorder = require("postcss-short-border"),
-  assets = require("postcss-assets"),
   webpack = require("webpack"),
   webpackConfig = require("./webpack.config.js"),
   browserSync = require("browser-sync").create(),
@@ -17,28 +13,28 @@ const // general
     dest: "public",
     html: {
       src: "/pug",
-      dest: ""
+      dest: "",
     },
     fonts: {
       src: "/fonts",
-      dest: "/fonts"
+      dest: "/fonts",
     },
     images: {
       src: "/images",
-      dest: "/img"
+      dest: "/img",
     },
     svg: {
       src: "/svg",
-      dest: "/svg"
+      dest: "",
     },
     css: {
       src: "/scss",
-      dest: "/css"
+      dest: "/css",
     },
     js: {
       src: "/js",
-      dest: "/js"
-    }
+      dest: "/js",
+    },
   };
 
 for (path in pathes) {
@@ -51,10 +47,9 @@ for (path in pathes) {
 function clean() {
   return del([
     pathes.dest + "/*",
-    // pathes.dest + "/*.html",
     "!" + pathes.fonts.dest,
     "!" + pathes.images.dest,
-    "!" + pathes.dest + "/userfiles"
+    "!" + pathes.dest + "/userfiles",
   ]);
 }
 
@@ -66,8 +61,8 @@ function svg() {
       .pipe(
         $gp.svgmin({
           js2svg: {
-            pretty: true
-          }
+            pretty: true,
+          },
         })
       )
       // remove all fill, style and stroke declarations in out shapes
@@ -81,7 +76,7 @@ function svg() {
               .removeAttr("width")
               .removeAttr("height");
           },
-          parserOptions: { xmlMode: true }
+          parserOptions: { xmlMode: true },
         })
       )
       // cheerio plugin create unnecessary string '&gt;', so replace it.
@@ -90,18 +85,10 @@ function svg() {
       .pipe(
         $gp.svgSprite({
           mode: {
-            symbol: {
-              //   render:
-              //   {
-              //     scss:
-              //     {
-              //       svgId: "svg-%f",
-              // 			dest: '../../../' + pathes.css.src + '/_sprite.scss',
-              // 			// template: '../../../' + pathes.css.src + "/templates/_sprite_template.scss"
-              // 		}
-              // 	}
-            }
-          }
+            stack: {
+              sprite: "../sprite.svg", //sprite file name
+            },
+          },
         })
       )
       .pipe(gulp.dest(pathes.svg.dest))
@@ -109,32 +96,29 @@ function svg() {
 }
 
 function html() {
-  var YOUR_LOCALS = {};
+  const locals = {};
 
   return gulp
     .src(pathes.html.src + "/*.pug")
     .pipe($gp.plumber())
     .pipe(
       $gp.pug({
-        locals: YOUR_LOCALS,
-        pretty: true
+        locals,
+        pretty: true,
       })
     )
     .pipe(gulp.dest(pathes.html.dest));
 }
 
 function css() {
-  var plugins = [
+  const plugins = [
     // precss(),
     cssnext(),
     // colorAlpha(),
     short(),
     // shortFont(),
     shortText(),
-    shortBorder()
-    // assets({
-    //   loadPaths: [pathes.images.dest]
-    // }),
+    shortBorder(),
     // minmax(),
     // autoprefixer({browsers: ['last 2 version']}),
     // cssnano()
@@ -147,10 +131,6 @@ function css() {
       // .pipe(cssGlobbing())
       .pipe($gp.sass().on("error", $gp.sass.logError))
       .pipe($gp.postcss(plugins))
-      // .pipe(autoprefixer({
-      //   browsers: ['last 15 versions'],
-      //   cascade: false
-      // }))
       .pipe($gp.concatCss("bundle.css"))
       // .pipe(minifyCSS())
       .pipe($gp.rename("style.min.css"))
@@ -170,43 +150,9 @@ function js() {
   );
 }
 
-// // сервер node.js
-// gulp.task("nodemon", done => {
-//   let started = false;
-//   $gp
-//     .nodemon({
-//       script: "server.js",
-//       env: { NODE_ENV: "development" },
-//       watch: [
-//         "controllers/*",
-//         "routes/*",
-//         "views/**/**/*",
-//         "config.json",
-//         "server.js"
-//       ]
-//     })
-//     .on("start", () => {
-//       if (started) return;
-//       done();
-//       started = true;
-//     });
-// });
-
-// // dev сервер + livereload (встроенный)
-// gulp.task(
-//   "server",
-//   gulp.series("nodemon", done => {
-//     browserSync.init({
-//       proxy: "http://localhost:3000",
-//       port: 8080,
-//       open: false
-//     });
-//   })
-// );
-
 function browser_sync() {
   browserSync.init({
-    server: pathes.dest
+    server: pathes.dest,
     // notify: false
   });
   browserSync.watch(pathes.dest + "/**/*.*", browserSync.reload);
@@ -214,7 +160,6 @@ function browser_sync() {
 
 function watch() {
   gulp.watch(
-    // [`${pathes.html.src}/**/*.pug`, `${pathes.html.views}/**/**/*.pug`],
     [`${pathes.html.src}/**/*.pug`, `${pathes.html.src}/**/**/*.pug`],
     gulp.series(html)
   );
@@ -222,10 +167,7 @@ function watch() {
     [pathes.css.src + "/**/*.scss", pathes.css.src + "/pages/**/*.scss"],
     gulp.series(css)
   );
-  gulp.watch(
-    ["./webpack.config.js", pathes.js.src + "/**/*.js"],
-    gulp.series(js)
-  );
+  gulp.watch(pathes.js.src + "/**/*.js", gulp.series(js));
 }
 
 exports.clean = clean;
@@ -244,6 +186,3 @@ gulp.task(
     gulp.parallel(watch, browser_sync)
   )
 );
-
-gulp.task("scripts", gulp.series(clean, js, watch));
-gulp.task("prod", gulp.series(clean, gulp.parallel(svg, css, js)));
